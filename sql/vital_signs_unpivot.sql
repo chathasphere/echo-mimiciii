@@ -7,14 +7,14 @@ with summary as (
 )
 
 select icustay_id
-, max(case when label = 'heart_rate' then 1 else 0 end) as vs_heart_rate_flag
-, max(case when label = 'heart_rate' then fst_val else null end) as vs_heart_rate_first
-, max(case when label = 'heart_rate' then min_val else null end) as vs_heart_rate_min
-, max(case when label = 'heart_rate' then max_val else null end) as vs_heart_rate_max
 , max(case when label = 'cvp' then 1 else 0 end) as vs_cvp_flag
 , max(case when label = 'cvp' then fst_val else null end) as vs_cvp_first
 , max(case when label = 'cvp' then min_val else null end) as vs_cvp_min
 , max(case when label = 'cvp' then max_val else null end) as vs_cvp_max
+, max(case when label = 'heart_rate' then 1 else 0 end) as vs_heart_rate_flag
+, max(case when label = 'heart_rate' then fst_val else null end) as vs_heart_rate_first
+, max(case when label = 'heart_rate' then min_val else null end) as vs_heart_rate_min
+, max(case when label = 'heart_rate' then max_val else null end) as vs_heart_rate_max
 , max(case when label = 'map' then 1 else 0 end) as vs_map_flag
 , max(case when label = 'map' then fst_val else null end) as vs_map_first
 , max(case when label = 'map' then min_val else null end) as vs_map_min

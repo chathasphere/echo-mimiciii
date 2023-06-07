@@ -3,7 +3,7 @@ with vasofirstday as (
            max(case when starttime between intime and intime + interval '1 day' and
                starttime <= outtime then 1 else 0 end) as vaso
     from cohort
-    left join vasopressordurations using (icustay_id)
+    left join vasopressor_durations using (icustay_id)
     group by icustay_id
 )
 
@@ -34,12 +34,12 @@ with vasofirstday as (
            extract(epoch from (outtime - intime))/24.0/60.0/60.0 as icu_los_day
     from cohort co
     natural left join (select subject_id, gender from patients) g
-    natural left join (select icustay_id, weight from weightfirstday) w
+    natural left join (select icustay_id, weight from weight_first_day) w
     natural left join (select icustay_id, saps from saps) sa
     natural left join (select icustay_id, sofa from sofa) so
     natural left join (select hadm_id, elixhauser_vanwalraven as elix_score
-                       from elixhauser_ahrq_score) elix
-    natural left join (select icustay_id, vent from ventfirstday) vent
+                       from elixhauser_score_ahrq) elix
+    natural left join (select icustay_id, vent from ventilation_first_day) vent
     natural left join vasofirstday
     natural left join icu_adm_wday
     natural left join mort

@@ -1,7 +1,7 @@
 with angus_group as (
     select icustay_id, angus
     from icustays
-    left join angus_sepsis using (hadm_id)
+    left join angus using (hadm_id)
 )
 
 , icu_age_raw as (
